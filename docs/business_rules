@@ -1,0 +1,37 @@
+#Business Rules – Withdrawal Charge Tracker
+##Product Overview
+The modified FLIP product maintains the same name but introduces new business logic, including a unique product code. While the core banking system lacked full support for the updated rules, a custom-built solution was developed prior to go-live to enable branches to provide accurate and consistent customer advice.
+
+##Key Business Rules
+1. **Investment Period**
+The minimum investment period is 5 years, with automatic roll-over at the end of each term.
+
+Investments continue to accrue interest unless action is taken by the customer to terminate or withdraw.
+
+2. **Withdrawal Rules**
+One Partial Withdrawal per Year:
+FLIP account holders may request one partial withdrawal per calendar year without incurring any penalty.
+
+Additional Withdrawals Within the Same Year:
+If more than one partial withdrawal is made in a year, a Partial Withdrawal Fee of 0.25% of the withdrawal amount is charged on each subsequent withdrawal.
+
+Withdrawals Upon Maturity:
+No charges apply when withdrawals are made upon rollover/maturity.
+
+Charge Calculation Logic
+When a charge is applicable, it is calculated as:
+Charge = Withdrawal Amount × 0.0025
+
+Allowable Withdrawal Calculation
+The solution dynamically determines:
+-Whether a partial withdrawal has already occurred in the current year
+-If the request is penalty-free or chargeable
+-The applicable charge (if any)
+
+**Reporting**
+Business Objects reports made these insights accessible at branch level, displaying:
+- Investment start and maturity dates
+- Withdrawal history for the calendar year
+- Eligibility status for withdrawal (based on withdrawal amount)
+- Chargeable amount
+
